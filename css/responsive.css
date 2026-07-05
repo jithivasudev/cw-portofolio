@@ -1,0 +1,207 @@
+/**
+ * Responsive breakpoints
+ * @author Jitheesh Vasudevan
+ */
+
+@media (max-width: 1024px) {
+  .skills__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero__layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+  }
+
+  .hero__visual {
+    order: -1;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .hero__float-card--years {
+    left: -4%;
+    bottom: 8%;
+  }
+
+  .hero__float-card--focus {
+    right: -4%;
+    top: 12%;
+  }
+
+  .hero__title {
+    font-size: var(--font-size-5xl);
+  }
+}
+
+@media (max-width: 768px) {
+  .nav__menu {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    padding: var(--space-xl);
+    gap: var(--space-lg);
+    transform: translateY(-120%);
+    opacity: 0;
+    transition: transform var(--transition-base), opacity var(--transition-base);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .nav__menu.show {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .nav__toggle {
+    display: flex;
+  }
+
+  .hero__title {
+    font-size: var(--font-size-4xl);
+  }
+
+  .hero__role {
+    font-size: var(--font-size-lg);
+  }
+
+  .hero__subtitle {
+    font-size: var(--font-size-base);
+  }
+
+  .hero__visual {
+    max-width: 280px;
+  }
+
+  .hero__float-card {
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .hero__float-card-value {
+    font-size: var(--font-size-xl);
+  }
+
+  .hero__float-card-label {
+    font-size: 0.65rem;
+  }
+
+  .hero__float-card--focus svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+  }
+
+  .hero__stats {
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .about__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+  }
+
+  .about__image-frame {
+    max-width: 280px;
+  }
+
+  .experience__summary {
+    gap: var(--space-md);
+    padding: var(--space-md) var(--space-lg);
+    margin-bottom: var(--space-2xl);
+  }
+
+  .experience__stat-divider {
+    display: none;
+  }
+
+  .experience__stat {
+    flex: 1 1 calc(33% - var(--space-md));
+    min-width: 80px;
+  }
+
+  .experience__timeline {
+    --exp-year-width: 0px;
+    --exp-marker-width: 24px;
+    gap: var(--space-lg);
+  }
+
+  .experience__timeline::before {
+    left: 11px;
+    top: 20px;
+    bottom: 20px;
+  }
+
+  .exp-card {
+    grid-template-columns: var(--exp-marker-width) 1fr;
+    gap: 0 var(--space-md);
+  }
+
+  .exp-card__year {
+    display: none;
+  }
+
+  .exp-card__marker {
+    padding-top: 1.25rem;
+  }
+
+  .exp-card__dot {
+    width: 12px;
+    height: 12px;
+  }
+
+  .exp-card__inner {
+    padding: var(--space-md) var(--space-lg);
+  }
+
+  .exp-card__logo {
+    width: 42px;
+    height: 42px;
+    font-size: var(--font-size-base);
+  }
+
+  .exp-card:hover .exp-card__panel {
+    transform: none;
+  }
+
+  .skills__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .projects__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+  }
+
+  .section__title {
+    font-size: var(--font-size-3xl);
+  }
+
+  .section {
+    padding: var(--space-3xl) 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 var(--space-md);
+  }
+
+  .hero__title {
+    font-size: var(--font-size-3xl);
+  }
+
+  .contact__form {
+    padding: var(--space-lg);
+  }
+}

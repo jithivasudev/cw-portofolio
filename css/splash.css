@@ -1,0 +1,353 @@
+/**
+
+ * Splash screen styles
+
+ * @author Jitheesh Vasudevan
+
+ */
+
+
+
+/* Splash Screen */
+
+.splash {
+
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 9999;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: var(--color-bg);
+
+  transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+}
+
+
+
+.splash::before {
+
+  content: '';
+
+  position: absolute;
+
+  inset: 0;
+
+  background-image:
+
+    linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+
+    linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+
+  background-size: 60px 60px;
+
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+
+  pointer-events: none;
+
+}
+
+
+
+.splash--hidden {
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  pointer-events: none;
+
+  transform: scale(1.03);
+
+}
+
+
+
+.splash__inner {
+
+  position: relative;
+
+  z-index: 1;
+
+  width: min(88vw, 640px);
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+}
+
+
+
+.splash__svg {
+
+  width: 100%;
+
+  aspect-ratio: 1024 / 674;
+
+  display: none;
+
+  overflow: visible;
+
+  opacity: 0;
+
+  transition: opacity 0.4s ease;
+
+}
+
+
+
+.splash--drawing .splash__svg,
+
+.splash--revealed .splash__svg {
+
+  display: block;
+
+  opacity: 1;
+
+  margin-bottom: -18%;
+
+}
+
+
+
+.splash__name {
+
+  margin-top: 0;
+
+  font-family: var(--font-display);
+
+  font-size: var(--font-size-2xl);
+
+  letter-spacing: 0.02em;
+
+  font-weight: 600;
+
+  color: var(--color-text);
+
+  opacity: 0;
+
+  transform: translateY(8px);
+
+  transition: opacity 0.6s ease, transform 0.6s ease;
+
+}
+
+
+
+.splash--name-visible .splash__name {
+
+  opacity: 1;
+
+  transform: translateY(0);
+
+}
+
+
+
+.splash--drawing .splash__name,
+
+.splash--revealed .splash__name {
+
+  margin-top: var(--space-xs);
+
+}
+
+
+
+.splash__image {
+
+  mix-blend-mode: multiply;
+
+}
+
+
+
+.splash__path {
+
+  fill: none;
+
+  stroke-linecap: round;
+
+  stroke-linejoin: round;
+
+}
+
+
+
+.splash__path--mask {
+
+  stroke: #fff;
+
+  stroke-width: 20;
+
+}
+
+
+
+.splash__pen {
+
+  fill: #111;
+
+  opacity: 0;
+
+  transition: opacity 0.2s ease;
+
+  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.15));
+
+}
+
+
+
+.splash--drawing .splash__pen {
+
+  opacity: 1;
+
+}
+
+
+
+.splash--revealed .splash__pen,
+
+.splash--hidden .splash__pen {
+
+  opacity: 0;
+
+}
+
+
+
+/* Hide page until splash completes */
+
+body.splash-active .header,
+
+body.splash-active main,
+
+body.splash-active .footer {
+
+  opacity: 0;
+
+}
+
+
+
+body.page-revealed .header {
+
+  animation: splashPageIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0s forwards;
+
+}
+
+
+
+body.page-revealed main {
+
+  animation: splashPageIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.05s forwards;
+
+}
+
+
+
+body.page-revealed .footer {
+
+  animation: splashPageIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
+
+}
+
+
+
+@keyframes splashPageIn {
+
+  from {
+
+    opacity: 0;
+
+    transform: translateY(18px);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform: translateY(0);
+
+  }
+
+}
+
+
+
+body.splash-active {
+
+  overflow: hidden;
+
+}
+
+
+
+@media (prefers-reduced-motion: reduce) {
+
+  .splash,
+
+  .splash__pen {
+
+    transition-duration: 0.15s;
+
+  }
+
+
+
+  .splash__name {
+
+    transition: none;
+
+  }
+
+
+
+  .splash--name-visible .splash__name {
+
+    opacity: 1;
+
+    transform: none;
+
+  }
+
+
+
+  body.page-revealed .header,
+
+  body.page-revealed main,
+
+  body.page-revealed .footer {
+
+    animation-duration: 0.2s;
+
+    animation-delay: 0s;
+
+  }
+
+}
+
+
+
+@media (max-width: 480px) {
+
+  .splash__inner {
+
+    width: 92vw;
+
+  }
+
+}
+
+
