@@ -15,13 +15,74 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* Signature Splash Screen */
+const SIGNATURE_VIEWBOX = { width: 1024, height: 674 };
+const SIGNATURE_STROKE_WIDTH = 20;
+
+function buildSignaturePathData(pathD) {
+  const coords = pathD.replace(/[ML]/g, ' ').trim().split(/\s+/).map(Number);
+  const points = [];
+  for (let i = 0; i < coords.length; i += 2) {
+    points.push([coords[i], coords[i + 1]]);
+  }
+
+  const segLengths = [0];
+  let total = 0;
+  for (let i = 1; i < points.length; i += 1) {
+    total += Math.hypot(points[i][0] - points[i - 1][0], points[i][1] - points[i - 1][1]);
+    segLengths.push(total);
+  }
+
+  return { points, segLengths, total };
+}
+
+function signaturePathAtLength(data, length) {
+  const { points, segLengths, total } = data;
+  if (!points.length) return { d: '', pen: [0, 0] };
+  if (length <= 0) return { d: `M ${points[0][0]} ${points[0][1]}`, pen: points[0] };
+  if (length >= total) {
+    return { d: SIGNATURE_PATH, pen: points[points.length - 1] };
+  }
+
+  let index = 1;
+  while (index < segLengths.length && segLengths[index] < length) index += 1;
+
+  const startLength = segLengths[index - 1];
+  const segmentLength = segLengths[index] - startLength;
+  const fraction = segmentLength > 0 ? (length - startLength) / segmentLength : 0;
+  const [x0, y0] = points[index - 1];
+  const [x1, y1] = points[index];
+  const pen = [x0 + (x1 - x0) * fraction, y0 + (y1 - y0) * fraction];
+
+  let d = `M ${points[0][0]} ${points[0][1]}`;
+  for (let i = 1; i < index; i += 1) {
+    d += ` L ${points[i][0]} ${points[i][1]}`;
+  }
+  d += ` L ${pen[0]} ${pen[1]}`;
+
+  return { d, pen };
+}
+
 function initSplashScreen() {
   const splash = document.getElementById('splash');
-  const path = document.getElementById('signature-path');
+  const canvas = document.getElementById('splash-canvas');
   const pen = document.getElementById('splash-pen');
-  if (!splash || !path || typeof SIGNATURE_PATH === 'undefined') return;
+  if (!splash || !canvas || typeof SIGNATURE_PATH === 'undefined') return;
 
-  path.setAttribute('d', SIGNATURE_PATH);
+  const ctx = canvas.getContext('2d');
+  const pathData = buildSignaturePathData(SIGNATURE_PATH);
+  const pathLength = pathData.total || SIGNATURE_LENGTH || 0;
+  const signatureImage = new Image();
+  signatureImage.decoding = 'async';
+  signatureImage.src = 'assets/signature.png';
+
+  const maskCanvas = document.createElement('canvas');
+  maskCanvas.width = SIGNATURE_VIEWBOX.width;
+  maskCanvas.height = SIGNATURE_VIEWBOX.height;
+  const maskCtx = maskCanvas.getContext('2d');
+  maskCtx.lineWidth = SIGNATURE_STROKE_WIDTH;
+  maskCtx.lineCap = 'round';
+  maskCtx.lineJoin = 'round';
+  maskCtx.strokeStyle = '#fff';
 
   if (pen && typeof SIGNATURE_START !== 'undefined') {
     pen.setAttribute('cx', SIGNATURE_START[0]);
@@ -37,19 +98,40 @@ function initSplashScreen() {
 
   const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
 
-  const measurePathLength = () => {
-    const measured = Math.ceil(path.getTotalLength());
-    if (measured > 0) return measured;
-    if (typeof SIGNATURE_LENGTH === 'number' && SIGNATURE_LENGTH > 0) {
-      return Math.ceil(SIGNATURE_LENGTH);
-    }
-    return 0;
+  const resizeCanvas = () => {
+    const art = canvas.parentElement;
+    if (!art) return;
+
+    const rect = art.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = Math.max(1, Math.round(rect.width * dpr));
+    canvas.height = Math.max(1, Math.round(rect.height * dpr));
+    canvas.style.width = `${rect.width}px`;
+    canvas.style.height = `${rect.height}px`;
   };
 
-  const setPathDash = (length, offset) => {
-    const dash = `${length} ${length}`;
-    path.setAttribute('stroke-dasharray', dash);
-    path.setAttribute('stroke-dashoffset', String(offset));
+  const paintSignature = (drawnLength) => {
+    const { d, pen: penPoint } = signaturePathAtLength(pathData, drawnLength);
+    if (!d) return;
+
+    maskCtx.clearRect(0, 0, SIGNATURE_VIEWBOX.width, SIGNATURE_VIEWBOX.height);
+    maskCtx.stroke(new Path2D(d));
+
+    const dpr = window.devicePixelRatio || 1;
+    const scaleX = canvas.width / SIGNATURE_VIEWBOX.width;
+    const scaleY = canvas.height / SIGNATURE_VIEWBOX.height;
+
+    ctx.setTransform(scaleX, 0, 0, scaleY, 0, 0);
+    ctx.clearRect(0, 0, SIGNATURE_VIEWBOX.width, SIGNATURE_VIEWBOX.height);
+    ctx.drawImage(signatureImage, 0, 0, SIGNATURE_VIEWBOX.width, SIGNATURE_VIEWBOX.height);
+    ctx.globalCompositeOperation = 'destination-in';
+    ctx.drawImage(maskCanvas, 0, 0);
+    ctx.globalCompositeOperation = 'source-over';
+
+    if (pen) {
+      pen.setAttribute('cx', penPoint[0]);
+      pen.setAttribute('cy', penPoint[1]);
+    }
   };
 
   const finishSplash = () => {
@@ -67,67 +149,67 @@ function initSplashScreen() {
   };
 
   const revealSignatureImmediately = () => {
-    const length = measurePathLength();
-    if (length > 0) {
-      setPathDash(length, 0);
-    } else {
-      const image = splash.querySelector('.splash__image');
-      if (image) image.removeAttribute('mask');
-    }
+    paintSignature(pathLength);
     splash.classList.add('splash--drawing', 'splash--revealed');
     finishSplash();
   };
 
   const startSignatureDraw = () => {
     splash.classList.add('splash--drawing');
+    resizeCanvas();
 
-    requestAnimationFrame(() => {
-      const length = measurePathLength();
-      if (!length) {
-        revealSignatureImmediately();
-        return;
-      }
+    if (!pathLength) {
+      revealSignatureImmediately();
+      return;
+    }
 
-      setPathDash(length, length);
+    if (!signatureImage.complete || signatureImage.naturalWidth === 0) {
+      revealSignatureImmediately();
+      return;
+    }
 
-      if (prefersReducedMotion) {
-        setPathDash(length, 0);
-        splash.classList.add('splash--revealed');
+    paintSignature(0);
+
+    if (prefersReducedMotion) {
+      paintSignature(pathLength);
+      splash.classList.add('splash--revealed');
+      finishSplash();
+      return;
+    }
+
+    const start = performance.now();
+
+    const tick = (now) => {
+      const t = Math.min((now - start) / drawDuration, 1);
+      const progress = easeOutCubic(t);
+      paintSignature(pathLength * progress);
+
+      if (t < 1) {
+        requestAnimationFrame(tick);
+      } else {
         finishSplash();
-        return;
       }
+    };
 
-      const start = performance.now();
-
-      const tick = (now) => {
-        const t = Math.min((now - start) / drawDuration, 1);
-        const progress = easeOutCubic(t);
-        const offset = length * (1 - progress);
-
-        setPathDash(length, offset);
-
-        if (pen) {
-          const point = path.getPointAtLength(length * progress);
-          pen.setAttribute('cx', point.x);
-          pen.setAttribute('cy', point.y);
-        }
-
-        if (t < 1) {
-          requestAnimationFrame(tick);
-        } else {
-          finishSplash();
-        }
-      };
-
-      requestAnimationFrame(tick);
-    });
+    requestAnimationFrame(tick);
   };
 
-  requestAnimationFrame(() => {
-    splash.classList.add('splash--name-visible');
-  });
+  const scheduleDraw = () => {
+    requestAnimationFrame(() => {
+      splash.classList.add('splash--name-visible');
+    });
 
-  setTimeout(startSignatureDraw, nameRevealDuration + nameHoldDuration);
+    setTimeout(startSignatureDraw, nameRevealDuration + nameHoldDuration);
+  };
+
+  if (signatureImage.complete) {
+    scheduleDraw();
+  } else {
+    signatureImage.addEventListener('load', scheduleDraw, { once: true });
+    signatureImage.addEventListener('error', scheduleDraw, { once: true });
+  }
+
+  window.addEventListener('resize', resizeCanvas, { passive: true });
 }
 
 function initAboutSignature() {

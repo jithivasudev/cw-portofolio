@@ -23,23 +23,12 @@
   <!-- Signature Splash -->
   <div id="splash" class="splash" aria-hidden="true">
     <div class="splash__inner">
-      <svg class="splash__svg" viewBox="0 0 1024 674" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <defs>
-          <mask id="signature-draw-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="1024" height="674">
-            <rect width="1024" height="674" fill="#000"/>
-            <path id="signature-path" class="splash__path splash__path--mask" stroke="#fff" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          </mask>
-        </defs>
-        <image
-          class="splash__image"
-          href="assets/signature.png"
-          width="1024"
-          height="674"
-          preserveAspectRatio="xMidYMid meet"
-          mask="url(#signature-draw-mask)"
-        />
-        <circle class="splash__pen" id="splash-pen" r="3" cx="101" cy="499"/>
-      </svg>
+      <div class="splash__art">
+        <canvas class="splash__canvas" id="splash-canvas" aria-hidden="true"></canvas>
+        <svg class="splash__svg" viewBox="0 0 1024 674" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle class="splash__pen" id="splash-pen" r="3" cx="101" cy="499"/>
+        </svg>
+      </div>
       <p class="splash__name">Christian Wulff</p>
     </div>
   </div>
