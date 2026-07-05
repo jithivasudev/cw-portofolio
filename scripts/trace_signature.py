@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import math
 from collections import defaultdict
 from pathlib import Path
 
@@ -129,6 +130,10 @@ def main() -> None:
         "start": list(svg_pts[0]),
         "end": list(svg_pts[-1]),
         "polylinePath": poly_d,
+        "length": math.ceil(sum(
+            math.hypot(svg_pts[i][0] - svg_pts[i - 1][0], svg_pts[i][1] - svg_pts[i - 1][1])
+            for i in range(1, len(svg_pts))
+        )),
     }
 
     OUT_PATH.write_text(json.dumps(data, indent=2), encoding="utf-8")
@@ -136,7 +141,8 @@ def main() -> None:
     js_path = ROOT / "js" / "signature-path.js"
     js_path.write_text(
         f"const SIGNATURE_PATH = {json.dumps(poly_d)};\n"
-        f"const SIGNATURE_START = {json.dumps(data['start'])};\n",
+        f"const SIGNATURE_START = {json.dumps(data['start'])};\n"
+        f"const SIGNATURE_LENGTH = {data['length']};\n",
         encoding="utf-8",
     )
 

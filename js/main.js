@@ -35,11 +35,22 @@ function initSplashScreen() {
   const holdDuration = prefersReducedMotion ? 150 : 300;
   const fadeDuration = prefersReducedMotion ? 150 : 400;
 
-  const length = path.getTotalLength();
-  path.style.strokeDasharray = `${length}`;
-  path.style.strokeDashoffset = `${length}`;
-
   const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+
+  const measurePathLength = () => {
+    const measured = Math.ceil(path.getTotalLength());
+    if (measured > 0) return measured;
+    if (typeof SIGNATURE_LENGTH === 'number' && SIGNATURE_LENGTH > 0) {
+      return Math.ceil(SIGNATURE_LENGTH);
+    }
+    return 0;
+  };
+
+  const setPathDash = (length, offset) => {
+    const dash = `${length} ${length}`;
+    path.setAttribute('stroke-dasharray', dash);
+    path.setAttribute('stroke-dashoffset', String(offset));
+  };
 
   const finishSplash = () => {
     splash.classList.add('splash--revealed');
@@ -55,38 +66,61 @@ function initSplashScreen() {
     }, holdDuration);
   };
 
-  const startSignatureDraw = () => {
-    if (prefersReducedMotion) {
-      path.style.strokeDashoffset = '0';
-      splash.classList.add('splash--drawing', 'splash--revealed');
-      finishSplash();
-      return;
+  const revealSignatureImmediately = () => {
+    const length = measurePathLength();
+    if (length > 0) {
+      setPathDash(length, 0);
+    } else {
+      const image = splash.querySelector('.splash__image');
+      if (image) image.removeAttribute('mask');
     }
+    splash.classList.add('splash--drawing', 'splash--revealed');
+    finishSplash();
+  };
 
+  const startSignatureDraw = () => {
     splash.classList.add('splash--drawing');
-    const start = performance.now();
 
-    const tick = (now) => {
-      const t = Math.min((now - start) / drawDuration, 1);
-      const progress = easeOutCubic(t);
-      const offset = length * (1 - progress);
-
-      path.style.strokeDashoffset = `${offset}`;
-
-      if (pen) {
-        const point = path.getPointAtLength(length * progress);
-        pen.setAttribute('cx', point.x);
-        pen.setAttribute('cy', point.y);
+    requestAnimationFrame(() => {
+      const length = measurePathLength();
+      if (!length) {
+        revealSignatureImmediately();
+        return;
       }
 
-      if (t < 1) {
-        requestAnimationFrame(tick);
-      } else {
+      setPathDash(length, length);
+
+      if (prefersReducedMotion) {
+        setPathDash(length, 0);
+        splash.classList.add('splash--revealed');
         finishSplash();
+        return;
       }
-    };
 
-    requestAnimationFrame(tick);
+      const start = performance.now();
+
+      const tick = (now) => {
+        const t = Math.min((now - start) / drawDuration, 1);
+        const progress = easeOutCubic(t);
+        const offset = length * (1 - progress);
+
+        setPathDash(length, offset);
+
+        if (pen) {
+          const point = path.getPointAtLength(length * progress);
+          pen.setAttribute('cx', point.x);
+          pen.setAttribute('cy', point.y);
+        }
+
+        if (t < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          finishSplash();
+        }
+      };
+
+      requestAnimationFrame(tick);
+    });
   };
 
   requestAnimationFrame(() => {
