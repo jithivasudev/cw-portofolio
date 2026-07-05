@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<!-- Author: Jitheesh Vasudevan -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Jitheesh Vasudevan">
+  <meta name="description" content="Christian Wulff — General Manager and strategic leader with 20+ years in finance, HR, software operations, and organizational transformation. PhD candidate at Golden Gate University.">
+  <title>Christian Wulff | General Manager &amp; Strategic Leader</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/splash.css">
+</head>
+<body class="splash-active">
+
+  <!-- Signature Splash -->
+  <div id="splash" class="splash" aria-hidden="true">
+    <div class="splash__inner">
+      <svg class="splash__svg" viewBox="0 0 1024 674" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <mask id="signature-draw-mask">
+            <rect width="1024" height="674" fill="#000"/>
+            <path id="signature-path" class="splash__path splash__path--mask"/>
+          </mask>
+        </defs>
+        <image
+          class="splash__image"
+          href="assets/signature.png"
+          width="1024"
+          height="674"
+          preserveAspectRatio="xMidYMid meet"
+          mask="url(#signature-draw-mask)"
+        />
+        <circle class="splash__pen" id="splash-pen" r="3" cx="101" cy="499"/>
+      </svg>
+      <p class="splash__name">Christian Wulff</p>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="#home" class="nav__logo">Christian Wulff<span class="nav__logo-dot">.</span></a>
+      <ul class="nav__menu" id="nav-menu">
+        <li><a href="#home" class="nav__link active">Home</a></li>
+        <li><a href="#about" class="nav__link">About</a></li>
+        <li><a href="#experience" class="nav__link">Experience</a></li>
+        <li><a href="#skills" class="nav__link">Skills</a></li>
+        <li><a href="#projects" class="nav__link">Projects</a></li>
+        <li><a href="#contact" class="nav__link">Contact</a></li>
+      </ul>
+      <button class="nav__toggle" id="nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+      <div class="hero__bg">
+        <div class="hero__orb hero__orb--1"></div>
+        <div class="hero__orb hero__orb--2"></div>
+        <div class="hero__grid"></div>
+      </div>
+      <div class="container hero__layout">
+        <div class="hero__content">
+          <div class="hero__badge reveal">
+            <span class="hero__badge-dot" aria-hidden="true"></span>
+            PhD Candidate &middot; Golden Gate University
+          </div>
+          <p class="hero__greeting reveal">Hello, I'm</p>
+          <h1 class="hero__title reveal">
+            <span class="hero__name">Christian Wulff</span>
+          </h1>
+          <p class="hero__role reveal">General Manager &amp; Strategic Leader</p>
+          <p class="hero__subtitle reveal">
+            Driving organizational success through
+            <span class="hero__typed" id="typed-text"></span>
+          </p>
+          <div class="hero__pills reveal" aria-label="Areas of expertise">
+            <span class="hero__pill">Financial Management</span>
+            <span class="hero__pill">Software Operations</span>
+            <span class="hero__pill">HR &amp; Compliance</span>
+            <span class="hero__pill">Auditing &amp; Taxation</span>
+          </div>
+          <div class="hero__actions reveal">
+            <a href="#about" class="btn btn--primary">Learn My Story</a>
+            <a href="#contact" class="btn btn--outline">Get In Touch</a>
+          </div>
+          <div class="hero__stats reveal">
+            <div class="stat">
+              <span class="stat__text">
+                <span class="stat__number" data-count="20">0</span><span class="stat__suffix">+</span>
+              </span>
+              <span class="stat__label">Years Experience</span>
+            </div>
+            <div class="stat">
+              <span class="stat__text">Global</span>
+              <span class="stat__label">International Perspective</span>
+            </div>
+            <div class="stat">
+              <span class="stat__text">End-to-End</span>
+              <span class="stat__label">Software Operations</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero__visual reveal">
+          <div class="hero__portrait-wrap">
+            <div class="hero__portrait-frame">
+              <img
+                class="hero__portrait"
+                src="assets/portrait.png"
+                alt="Christian Wulff, General Manager and strategic leader"
+                width="420"
+                height="520"
+              >
+            </div>
+            <div class="hero__portrait-accent" aria-hidden="true"></div>
+          </div>
+          <div class="hero__float-card hero__float-card--years">
+            <span class="hero__float-card-value">20+</span>
+            <span class="hero__float-card-label">Years of Leadership</span>
+          </div>
+          <div class="hero__float-card hero__float-card--focus">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <span class="hero__float-card-label">Global Business Focus</span>
+          </div>
+        </div>
+      </div>
+      <a href="#about" class="hero__scroll" aria-label="Scroll down">
+        <span class="hero__scroll-line"></span>
+      </a>
+    </section>
+
+    <!-- About -->
+    <section class="section about" id="about">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__tag">About Me</span>
+          <h2 class="section__title">Who I Am</h2>
+        </div>
+        <div class="about__grid">
+          <div class="about__image reveal">
+            <div class="about__image-frame">
+              <div class="about__avatar">
+                <img
+                  class="about__photo"
+                  src="assets/portrait.png"
+                  alt="Professional headshot of Christian Wulff wearing a suit and green tie"
+                  width="360"
+                  height="360"
+                >
+              </div>
+              <div class="about__image-accent"></div>
+            </div>
+          </div>
+          <div class="about__content reveal">
+            <h3 class="about__heading">Driving organizational success through leadership and innovation</h3>
+            <p class="about__text">
+              With over 20 years of comprehensive experience in General Management, Financial and
+              Human Resource Management, General Administration, Cost Management, Budgeting and
+              Forecasting, Auditing, Taxation, and Software Operations Management, I am dedicated
+              to driving organizational success and efficiency. My international studies have
+              significantly broadened my horizons, providing a deep and nuanced understanding of
+              global perspectives and practices. Pursuing a doctorate at Golden Gate University will
+              further enrich this experience, allowing me to build a robust network of contacts and
+              gain a profound insight into international business dynamics.
+            </p>
+            <p class="about__text">
+              I excel at innovating and implementing solutions in complex environments, specializing
+              in the restructuring and re-engineering of financial and administrative processes to
+              maximize resource utilization. As a dynamic change agent, I have successfully
+              repositioned organizations to achieve financial and operational excellence. I also
+              lead software teams with exceptional skill—overseeing software operations end to end
+              and aligning technical delivery with business goals. My ability to present financial
+              data and operational performance insights empowers effective decision-making.
+            </p>
+            <p class="about__text">
+              My extensive background also encompasses Human Resource Management &amp; Compliance,
+              Tactical Alliances, and Relationship Management. As a visionary leader with a keen eye
+              for detail and a strong analytical aptitude, I address root causes and solve problems
+              efficiently, driving success in both local and global contexts.
+            </p>
+            <div class="about__signature">
+              <svg
+                class="about__signature-svg"
+                viewBox="0 0 1024 674"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path id="about-signature-path" class="about__signature-path"/>
+              </svg>
+              <p class="about__signature-name">Christian Wulff</p>
+            </div>
+            <a href="#contact" class="btn btn--primary">Let's Talk</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="section experience" id="experience">
+      <div class="experience__bg" aria-hidden="true">
+        <div class="experience__orb experience__orb--1"></div>
+        <div class="experience__orb experience__orb--2"></div>
+      </div>
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__tag">Career</span>
+          <h2 class="section__title">Professional Experience</h2>
+          <p class="experience__intro">Two decades of executive leadership across finance, operations, and facade construction — spanning the UK, Middle East, and United States.</p>
+        </div>
+        <div class="experience__summary reveal">
+          <div class="experience__stat">
+            <span class="experience__stat-value">20+</span>
+            <span class="experience__stat-label">Years Leading</span>
+          </div>
+          <div class="experience__stat-divider" aria-hidden="true"></div>
+          <div class="experience__stat">
+            <span class="experience__stat-value">5</span>
+            <span class="experience__stat-label">Organizations</span>
+          </div>
+          <div class="experience__stat-divider" aria-hidden="true"></div>
+          <div class="experience__stat">
+            <span class="experience__stat-value">3</span>
+            <span class="experience__stat-label">Continents</span>
+          </div>
+        </div>
+        <div class="experience__timeline">
+          <article class="exp-card exp-card--current reveal">
+            <div class="exp-card__year">
+              <span class="exp-card__year-start">2021</span>
+              <span class="exp-card__year-end">Present</span>
+            </div>
+            <div class="exp-card__marker" aria-hidden="true">
+              <span class="exp-card__dot"></span>
+            </div>
+            <div class="exp-card__panel">
+              <div class="exp-card__accent"></div>
+              <div class="exp-card__inner">
+                <div class="exp-card__header">
+                  <div class="exp-card__logo exp-card__logo--haldrup"><span>H</span></div>
+                  <div class="exp-card__headline">
+                    <div class="exp-card__top">
+                      <h3 class="exp-card__title">Vice President</h3>
+                      <span class="exp-card__badge">Current Role</span>
+                    </div>
+                    <p class="exp-card__company">HALDRUP USA Corp · Full-time</p>
+                  </div>
+                </div>
+                <div class="exp-card__details">
+                  <span class="exp-card__chip">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    Jan 2021 – Present · 5 yrs 7 mos
+                  </span>
+                  <span class="exp-card__chip">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    Ossian, Indiana, United States
+                  </span>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="exp-card reveal">
+            <div class="exp-card__year">
+              <span class="exp-card__year-start">2010</span>
+              <span class="exp-card__year-end">2021</span>
+            </div>
+            <div class="exp-card__marker" aria-hidden="true">
+              <span class="exp-card__dot"></span>
+            </div>
+            <div class="exp-card__panel">
+              <div class="exp-card__accent"></div>
+              <div class="exp-card__inner">
+                <div class="exp-card__header">
+                  <div class="exp-card__logo exp-card__logo--inoclad"><span>I</span></div>
+                  <div class="exp-card__headline">
+                    <div class="exp-card__top">
+                      <h3 class="exp-card__title">Managing Director</h3>
+                    </div>
+                    <p class="exp-card__company">Inoclad</p>
+                  </div>
+                </div>
+                <div class="exp-card__details">
+                  <span class="exp-card__chip">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    Apr 2010 – Dec 2021 · 11 yrs 9 mos
+                  </span>
+                  <span class="exp-card__chip">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    United Arab Emirates
+                  </span>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="exp-card reveal">
+            <div class="exp-card__year">
+              <span class="exp-card__year-start">2013</span>
+              <span class="exp-card__year-end">2016</span>
+            </div>
+            <div class="exp-card__marker" aria-hidden="true">
+              <span class="exp-card__dot"></span>
+            </div>
+            <div class="exp-card__panel">
+              <div class="exp-card__accent"></div>
+              <div class="exp-card__inner">
+                <div class="exp-card__header">
+                  <div class="exp-card__logo exp-card__logo--sotec"><span>S</span></div>
+                  <div class="exp-card__headline">
+                    <div class="exp-card__top">
+                      <h3 class="exp-card__title">Commercial Director</h3>
+                    </div>
+                    <p class="exp-card__company">SOTEC WLL</p>
+                  </div>
+                </div>
+                <div class="exp-card__details">
+                  <span class="exp-card__chip">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    May 2013 – Apr 2016 · 3 yrs
+                  </span>
+                  <span class="exp-card__chip">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    Doha, Qatar
+                  </span>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="exp-card reveal">
+            <div class="exp-card__year">
+              <span class="exp-card__year-start">2010</span>
+              <span class="exp-card__year-end">2011</span>
+            </div>
+            <div class="exp-card__marker" aria-hidden="true">
+              <span class="exp-card__dot"></span>
+            </div>
+            <div class="exp-card__panel">
+              <div class="exp-card__accent"></div>
+              <div class="exp-card__inner">
+                <div class="exp-card__header">
+                  <div class="exp-card__logo exp-card__logo--seele"><span>S</span></div>
+                  <div class="exp-card__headline">
+                    <div class="exp-card__top">
+                      <h3 class="exp-card__title">Commercial Manager – Adviser</h3>
+                    </div>
+                    <p class="exp-card__company">seele middle east FZE</p>
+                  </div>
+                </div>
+                <div class="exp-card__details">
+                  <span class="exp-card__chip">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    Oct 2010 – Sep 2011 · 1 yr
+                  </span>
+                  <span class="exp-card__chip">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    Dubai, United Arab Emirates
+                  </span>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="exp-card reveal">
+            <div class="exp-card__year">
+              <span class="exp-card__year-start">2006</span>
+              <span class="exp-card__year-end">2010</span>
+            </div>
+            <div class="exp-card__marker" aria-hidden="true">
+              <span class="exp-card__dot"></span>
+            </div>
+            <div class="exp-card__panel">
+              <div class="exp-card__accent"></div>
+              <div class="exp-card__inner">
+                <div class="exp-card__header">
+                  <div class="exp-card__logo exp-card__logo--schneider"><span>S</span></div>
+                  <div class="exp-card__headline">
+                    <div class="exp-card__top">
+                      <h3 class="exp-card__title">Finance &amp; Administration Manager</h3>
+                    </div>
+                    <p class="exp-card__company">Schneider GB Ltd</p>
+                  </div>
+                </div>
+                <div class="exp-card__details">
+                  <span class="exp-card__chip">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    Feb 2006 – Mar 2010 · 4 yrs 2 mos
+                  </span>
+                  <span class="exp-card__chip">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    London Area, United Kingdom
+                  </span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="section skills" id="skills">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__tag">Expertise</span>
+          <h2 class="section__title">Skills &amp; Tools</h2>
+        </div>
+        <div class="skills__grid">
+          <div class="skill-card reveal">
+            <div class="skill-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+            </div>
+            <h3 class="skill-card__title">Frontend</h3>
+            <p class="skill-card__desc">HTML, CSS, JavaScript, React, Vue, TypeScript</p>
+            <div class="skill-card__bar"><div class="skill-card__fill" data-width="90"></div></div>
+          </div>
+          <div class="skill-card reveal">
+            <div class="skill-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2"/></svg>
+            </div>
+            <h3 class="skill-card__title">Backend</h3>
+            <p class="skill-card__desc">Node.js, Express, REST APIs, Databases</p>
+            <div class="skill-card__bar"><div class="skill-card__fill" data-width="80"></div></div>
+          </div>
+          <div class="skill-card reveal">
+            <div class="skill-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+            </div>
+            <h3 class="skill-card__title">Design</h3>
+            <p class="skill-card__desc">Figma, UI/UX, Responsive Design, Prototyping</p>
+            <div class="skill-card__bar"><div class="skill-card__fill" data-width="85"></div></div>
+          </div>
+          <div class="skill-card reveal">
+            <div class="skill-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
+            </div>
+            <h3 class="skill-card__title">DevOps</h3>
+            <p class="skill-card__desc">Git, Docker, CI/CD, Cloud Deployment</p>
+            <div class="skill-card__bar"><div class="skill-card__fill" data-width="75"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="section projects" id="projects">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__tag">Portfolio</span>
+          <h2 class="section__title">Featured Projects</h2>
+        </div>
+        <div class="projects__grid">
+          <article class="project-card reveal">
+            <div class="project-card__image project-card__image--1">
+              <div class="project-card__overlay">
+                <a href="#" class="project-card__link" aria-label="View project">View Project</a>
+              </div>
+            </div>
+            <div class="project-card__body">
+              <div class="project-card__tags">
+                <span class="tag">React</span>
+                <span class="tag">Node.js</span>
+              </div>
+              <h3 class="project-card__title">E-Commerce Platform</h3>
+              <p class="project-card__desc">A full-stack online store with cart, payments, and admin dashboard.</p>
+            </div>
+          </article>
+          <article class="project-card reveal">
+            <div class="project-card__image project-card__image--2">
+              <div class="project-card__overlay">
+                <a href="#" class="project-card__link" aria-label="View project">View Project</a>
+              </div>
+            </div>
+            <div class="project-card__body">
+              <div class="project-card__tags">
+                <span class="tag">Vue</span>
+                <span class="tag">Firebase</span>
+              </div>
+              <h3 class="project-card__title">Task Manager App</h3>
+              <p class="project-card__desc">Real-time collaborative task management with drag-and-drop boards.</p>
+            </div>
+          </article>
+          <article class="project-card reveal">
+            <div class="project-card__image project-card__image--3">
+              <div class="project-card__overlay">
+                <a href="#" class="project-card__link" aria-label="View project">View Project</a>
+              </div>
+            </div>
+            <div class="project-card__body">
+              <div class="project-card__tags">
+                <span class="tag">Node.js</span>
+                <span class="tag">API</span>
+              </div>
+              <h3 class="project-card__title">AI Content Generator</h3>
+              <p class="project-card__desc">Smart writing assistant powered by machine learning models.</p>
+            </div>
+          </article>
+          <article class="project-card reveal">
+            <div class="project-card__image project-card__image--4">
+              <div class="project-card__overlay">
+                <a href="#" class="project-card__link" aria-label="View project">View Project</a>
+              </div>
+            </div>
+            <div class="project-card__body">
+              <div class="project-card__tags">
+                <span class="tag">Next.js</span>
+                <span class="tag">Tailwind</span>
+              </div>
+              <h3 class="project-card__title">Portfolio Builder</h3>
+              <p class="project-card__desc">Drag-and-drop tool for creating stunning personal portfolio sites.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section contact" id="contact">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__tag">Contact</span>
+          <h2 class="section__title">Get In Touch</h2>
+        </div>
+        <div class="contact__grid">
+          <div class="contact__info reveal">
+            <p class="contact__text">
+              Have a project in mind or just want to say hello? I'd love to hear from you.
+              Fill out the form and I'll get back to you as soon as possible.
+            </p>
+            <ul class="contact__details">
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                <span>hello@cw.dev</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                <span>Available Worldwide</span>
+              </li>
+            </ul>
+            <div class="contact__social">
+              <a href="#" class="social-link" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              </a>
+              <a href="https://www.linkedin.com/in/christian-wulff-08a94726" class="social-link" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 114.126 0 2.063 2.063 0 01-2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              </a>
+              <a href="#" class="social-link" aria-label="Twitter">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              </a>
+            </div>
+          </div>
+          <form class="contact__form reveal" id="contact-form">
+            <div class="form__group">
+              <label for="name" class="form__label">Name</label>
+              <input type="text" id="name" name="name" class="form__input" placeholder="Your name" required>
+            </div>
+            <div class="form__group">
+              <label for="email" class="form__label">Email</label>
+              <input type="email" id="email" name="email" class="form__input" placeholder="your@email.com" required>
+            </div>
+            <div class="form__group">
+              <label for="subject" class="form__label">Subject</label>
+              <input type="text" id="subject" name="subject" class="form__input" placeholder="Project inquiry">
+            </div>
+            <div class="form__group">
+              <label for="message" class="form__label">Message</label>
+              <textarea id="message" name="message" class="form__input form__textarea" rows="5" placeholder="Tell me about your project..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn--primary btn--full">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__meta">
+        <p class="footer__copy">&copy; 2026 <a href="#home">Christian Wulff</a>. All rights reserved.</p>
+        <p class="footer__author">Website by Jitheesh Vasudevan</p>
+      </div>
+      <a href="#home" class="footer__top" aria-label="Back to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 15l7-7 7 7"/></svg>
+      </a>
+    </div>
+  </footer>
+
+  <script src="js/signature-path.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
